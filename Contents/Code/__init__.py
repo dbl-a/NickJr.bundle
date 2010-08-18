@@ -1,8 +1,5 @@
 # PMS plugin framework
 import re
-from PMS import *
-from PMS.Objects import *
-from PMS.Shortcuts import *
 
 ####################################################################################################
 
@@ -60,7 +57,7 @@ def ShowList(sender, image, pageUrl):
     	link = NICK_ROOT + item.get('href')
     	title = item.text
     	if "Video" in title:
-            showcontent = HTTP.Request(link)
+            showcontent = HTTP.Request(link).content
             m = re.compile('KIDS.add."cmsId", ".+?".;').findall(showcontent)
             cmsid = m[0].split('"')[3]
             #Log(cmsid)
