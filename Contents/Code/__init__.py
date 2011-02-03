@@ -51,7 +51,7 @@ def ShowList(sender, image, pageUrl):
         title = item.xpath(".//media:title", namespaces=NAMESPACES)[0].text
         link = item.xpath('.//media:player', namespaces=NAMESPACES)[0].get('url')
         thumb = item.xpath('.//media:thumbnail', namespaces=NAMESPACES)[0].get('url')
-        duration = int(item.xpath('.//media:content', namespaces=NAMESPACES)[0].get('duration')) * 1000
+        duration = int(item.xpath('.//media:content', namespaces=NAMESPACES)[0].get('duration').replace(':', '')) * 1000   ##ADDED replace(':', '') FOR PROTECTION AGAINST A FEW VIDEOS THAT HAVE "MIN:SEC" RATHER THAN JUST "SEC" 
         summary = item.xpath('.//media:description', namespaces=NAMESPACES)[0].text
         if item[0].xpath("..//media:category[@label='full']", namespaces=NAMESPACES):
             clipdict['false'].append((title, thumb, summary, link, duration))
